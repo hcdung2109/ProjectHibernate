@@ -1,14 +1,12 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "employee")
 public class Employee {
     @Id
+    @Column(name = "id")
     private Integer id;
     private String name;
     @Id // KHÓA CHÍNH
@@ -32,8 +30,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String name) {
-        this.id = id;
+    public Employee(String name) {
         this.name = name;
     }
 }

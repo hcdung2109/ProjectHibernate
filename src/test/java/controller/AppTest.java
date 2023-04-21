@@ -1,4 +1,4 @@
-package master;
+package controller;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
