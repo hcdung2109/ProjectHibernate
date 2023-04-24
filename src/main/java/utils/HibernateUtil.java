@@ -1,6 +1,8 @@
 package utils;
 
 import java.util.Properties;
+
+import model.Employee;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -9,16 +11,17 @@ import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
 
-                // Hibernate settings equivalent to hibernate.cfg.xml's properties
+                // Hibernate settings equivalent to hibernate.txt's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/testdb?useSSL=false");
-                //settings.put(Environment.URL, "jdbc:mysql://localhost/testdb");
+                //settings.put(Environment.URL, "jdbc:mysql://localhost:3306/testdb?useSSL=false");
+                settings.put(Environment.URL, "jdbc:mysql://localhost/testdb");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
@@ -32,7 +35,7 @@ public class HibernateUtil {
 
                 configuration.setProperties(settings);
 
-                //configuration.addAnnotatedClass(Student.class);
+                configuration.addAnnotatedClass(Employee.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
@@ -42,6 +45,7 @@ public class HibernateUtil {
                 e.printStackTrace();
             }
         }
+
         return sessionFactory;
     }
 }

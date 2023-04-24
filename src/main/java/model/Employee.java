@@ -10,7 +10,7 @@ public class Employee {
     private Integer id;
     private String name;
     @Id // KHÓA CHÍNH
-    @GeneratedValue // Tự động tăng giá trị
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -32,5 +32,10 @@ public class Employee {
 
     public Employee(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }
