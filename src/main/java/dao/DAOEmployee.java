@@ -22,7 +22,7 @@ public class DAOEmployee implements DAOInterface<Employee>{
                 Transaction transaction = session.beginTransaction();
 
                 // execute SQL / HQL
-                String hql = "from employee";
+                String hql = "from Employee";
                 Query query = session.createQuery(hql);
                 list = query.getResultList();
 
