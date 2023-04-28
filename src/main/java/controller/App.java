@@ -17,13 +17,5 @@ public class App
 
         //EmployeeController employeeController = new EmployeeController();
         //employeeController.saveEmployee(employee);
-
-        DAOEmployee daoEmployee = new DAOEmployee();
-
-        // Test select all
-        List<Employee> list = daoEmployee.selectAll();
-        for (Employee e: list) {
-            System.out.println(e);
-        }
     }
 }

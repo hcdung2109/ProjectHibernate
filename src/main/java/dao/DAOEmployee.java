@@ -43,8 +43,38 @@ public class DAOEmployee implements DAOInterface<Employee>{
     }
 
     @Override
-    public Employee selectById(Employee employee) {
-        return null;
+    public Employee selectById(int id) {
+        List<Employee> list = new ArrayList<Employee>();
+        try {
+            SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+            if (sessionFactory != null) {
+                Session session = sessionFactory.openSession();
+                Transaction transaction = session.beginTransaction();
+
+                // execute SQL / HQL
+                String hql = "from Employee e where e.id = :id";
+                Query query = session.createQuery(hql);
+                query.setParameter("id", id);
+                list = query.getResultList();
+
+                transaction.commit();
+                session.close();;
+            } else {
+                /*if (transaction != null) {
+                    transaction.rollback();
+                }*/
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
     }
 
     @Override

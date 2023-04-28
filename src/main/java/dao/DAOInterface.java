@@ -6,7 +6,7 @@ public interface DAOInterface<T> {
 
     public List<T> selectAll();
 
-    public T selectById(T t);
+    public T selectById(int id);
 
     public boolean insert(T t);
 
